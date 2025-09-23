@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import {ÁlbumesController} from '../controller/álbumes-controller'
 export const router=Router()
 
-router.get('/',(req,res)=>{res.status(200).json('álbumes')})
+router.get('/', ÁlbumesController.getAllÁlbumes )

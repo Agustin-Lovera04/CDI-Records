@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { CluesController } from '../controller/clues-controller';
 export const router=Router()
 
-router.get('/',(req,res)=>{res.status(200).json('clues')})
+router.get('/', CluesController.getAllClues)
