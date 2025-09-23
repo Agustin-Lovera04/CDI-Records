@@ -1,4 +1,4 @@
-import { UserDAO as DAO } from "../DAO/manager/user-DAO"
+import { UserDAO as DAO } from "../DAO/manager/user-DAO.js"
 
 class UserService{
     constructor(DAO){
@@ -10,4 +10,4 @@ class UserService{
     }
 }
 
-export const userServiceInstance = new UserService(DOMException)
+export const userServiceInstance = new UserService(DAO)

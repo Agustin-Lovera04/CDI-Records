@@ -3,20 +3,22 @@ export class UserDAO {
     {
         id: 1,
         name: 'Agustin',
-        email: 'agus@test.com'
+        email: 'agus@test.com',
+        totalIncome: 1200
     },
     {
         id: 2,
         name: 'Juan',
-        email: 'juan@test.com'
+        email: 'juan@test.com',
+        totalIncome: 1200
     },
     {
         id: 3,
         name: 'Pedro',
-        email: 'Pedro@test.com'
+        email: 'Pedro@test.com',
+        totalIncome: 1200
     }
 ]
-
 
     async getAllUsers(){
         return this.users

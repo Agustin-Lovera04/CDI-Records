@@ -5,6 +5,6 @@ export class UserController {
 
         const users = await userServiceInstance.getAllUsers()
         res.setHeader('Content-Type','application/json');
-        return res.status(200).json({payload: 'ok'});
+        return res.status(200).json({payload: users.length});
     }
 }
