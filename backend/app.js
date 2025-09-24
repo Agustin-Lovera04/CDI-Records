@@ -1,11 +1,16 @@
 import express from 'express'
+import passport from 'passport'
 import { config } from './src/config/config.js'
 import { router as userRouter } from './src/router/user-router.js'
 import { router as cluesRouter } from './src/router/clues-router.js'
 import { router as álbumesRouter } from './src/router/álbumes-router.js'
+import { initPassport } from './src/config/config.passport.js'
 
 const app = express()
 const PORT = config.PORT
+
+initPassport()
+app.use(passport.initialize())
 
 app.use('/user', userRouter)
 app.use('/clues', cluesRouter)

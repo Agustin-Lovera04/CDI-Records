@@ -20,7 +20,8 @@ export class UserDAO {
     async createUser(dataUser){
         try {
             this.users.push(dataUser)
-            return true
+            
+            return dataUser
         } catch (error) {
         return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}               
         }
