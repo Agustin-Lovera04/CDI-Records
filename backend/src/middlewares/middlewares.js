@@ -8,8 +8,7 @@ export const passportCall = (strategy) =>
           error: err.message || "Error de autenticación",
         });
       }
-
-      /*         if (!user) {
+        if (!user) {
             if(info.message === 'jwt expired'){
                 info.message = 'Sesion expirada - Inicia sesion nuevamente'
             }
@@ -20,7 +19,7 @@ export const passportCall = (strategy) =>
                 error: info?.message || 'No autorizado'
             });
         }
- */
+
       req.user = user;
       return next();
     })(req, res, next);

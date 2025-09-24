@@ -12,11 +12,12 @@ export const initPassport = () => {
         passReqToCallback: true,
         usernameField: "email",
       },
+
       async (req, username, password, done) => {
         try {
-          const { email, password, rol, name, commission } = req.body; //0 si es admin
-
-          if (!email || !password || !rol || !name || !commission) {
+          let { email, password/* , rol, name, commission */ } = req.body; //0 si es admin
+          
+          if (!email || !password /* || !rol || !name || !commission */) {
             return done(null, false, {
               message: "Faltan campos obligatorios.",
             });
@@ -29,20 +30,25 @@ export const initPassport = () => {
 
           const existUser = await userServiceInstance.getUserByEmail(email);
 
-          if (existUser === false) {
+          if (existUser) {
             return done(null, false, {
               message:
                 "Ya existen artistas registrados con el email ingresado.",
             });
           }
-          password = hashPassword(password);
 
-          const dataUser = { email, password, rol, name, commission };
-
+          password = hashPassword(password)
+          
+          const dataUser = { email, password, /* rol, name, commission  */};
           const createUser = await userServiceInstance.createUser(dataUser);
-          if (createUser) {
-            return done(null, createUser);
+          console.log(createUser)
+          if (createUser.error) {
+              return done(null, false, {
+              message:
+                "Ya existen artistas registrados con el email ingresado.",
+            });
           }
+          return done(null, createUser);
         } catch (error) {
           done(error, false);
         }

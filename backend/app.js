@@ -12,6 +12,10 @@ const PORT = config.PORT
 initPassport()
 app.use(passport.initialize())
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+
 app.use('/user', userRouter)
 app.use('/clues', cluesRouter)
 app.use('/albumes', álbumesRouter)
