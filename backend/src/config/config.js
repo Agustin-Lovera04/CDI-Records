@@ -7,5 +7,7 @@ dotenv.config({
 })
 
 export const config = {
-    PORT: process.env.PORT
+    PORT: process.env.PORT,
+    KEY_JWT: process.env.KEY_JWT,
+    COOKIES_SECRET_KEY: process.env.COOKIES_SECRET_KEY
 }

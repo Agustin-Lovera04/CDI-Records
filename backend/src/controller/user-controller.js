@@ -8,13 +8,25 @@ export class UserController {
   }
 
   static async registerUser(req, res) {
-    console.log(req.user);
     res.setHeader("Content-Type", "application/json");
-    return res.status(200).json({ payload: "Usuario registrado con éxito" });
+    return res.status(200).json({ payload: req.user});
   }
 
   static async loginUser(req, res) {
-    res.setHeader("Content-Type", "application/json");
-    return res.status(200).json({ payload: "Usuario logueado con exito" });
+    const token = await userServiceInstance.genTokenForLogin(req.user)
+    if(token.error){
+      res.setHeader('Content-Type','application/json');
+      return res.status(500).json({error: token.error});
+    }
+
+    res.cookie("tokenCookie", token, {maxAge: 1000*60*60, httpOnly: true, signed:true})
+    
+    res.setHeader('Content-Type','application/json');
+    return res.status(201).json({
+        message: 'Sesión iniciada.',
+        user: (
+          req.user
+        )});
   }
+
 }

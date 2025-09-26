@@ -1,4 +1,6 @@
 import { UserDAO as DAO } from "../DAO/manager/user-DAO.js";
+import { validPassword, genToken } from "../utils/utils.js";
+
 
 class UserService {
   constructor(DAO) {
@@ -18,7 +20,26 @@ class UserService {
   }
 
   async loginUser(dataUser) {
-    return await this.DAO.loginUser(dataUser);
+    const user = await this.DAO.loginUser(dataUser);
+    if (user?.error) {
+      return user;
+    }
+
+    const passwordIsValid = validPassword(dataUser.password, user.password);
+    if (!passwordIsValid) {
+      return { error: "Credenciales invalidas" };
+    }
+
+    return user;
+  }
+
+  async genTokenForLogin(user){
+    let token = genToken(user)
+    if(!token){
+      return {error: "Error interno - Contacte a un administrador: admin@cdirecords.com"}
+    }
+
+    return token
   }
 }
 

@@ -1,11 +1,9 @@
-import { validPassword } from "../../utils/utils.js";
-
 export class UserDAO {
   users = [
     {
       email: "agustin@gmail.com",
       password: "$2b$10$F5NVYyFocv7dJKGEsTTHzuTbJ9HJQbfBInhRi6dMfIuXnm9RGblLm",
-      rol: "artista",
+      role: "premium",
       name: "Agustin",
       commission: 1,
       totalIncome: 1500,
@@ -43,19 +41,12 @@ export class UserDAO {
 
   async loginUser(dataUser) {
     try {
-      const { email, password } = dataUser;
+      const { email } = dataUser;
       const user = await this.getUserByEmail(email);
       if (!user) {
         return { error: "Credenciales invalidas" };
       }
-
-      let passwordIsValid = validPassword(password, user.password);
-
-      if (passwordIsValid === false) {
-        return { error: "Credenciales invalidas" };
-      } else {
-        return user;
-      }
+      return user;
     } catch (error) {
       return {
         error:

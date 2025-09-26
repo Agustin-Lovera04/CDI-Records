@@ -2,7 +2,8 @@ import passport from "passport";
 import local from "passport-local";
 import passportJWT from "passport-jwt";
 import { userServiceInstance } from "../services/user-service.js";
-import { hashPassword } from "../utils/utils.js";
+import { hashPassword, searchToken } from "../utils/utils.js";
+import { config } from "./config.js";
 
 export const initPassport = () => {
   passport.use(
@@ -99,4 +100,18 @@ export const initPassport = () => {
       }
     )
   );
+
+  passport.use('jwt', new passportJWT.Strategy(
+    {
+      secretOrKey: config.KEY_JWT,
+      jwtFromRequest: passportJWT.ExtractJwt.fromExtractors([searchToken])
+    },
+    async (contentToken, done) => {
+      try {
+        return done(null, contentToken)
+      } catch (error) {
+        return done(error)
+      }
+    }
+  ))
 };
