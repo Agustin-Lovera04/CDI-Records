@@ -1,9 +1,12 @@
 import './App.css'
+import { UserProvider } from './Context/UserContext'
 import Router from './Router/Router'
 
 const App = () => {
   return (
-    <Router/>
+    <UserProvider>
+      <Router/>
+    </UserProvider>
   )
 }
 

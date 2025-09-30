@@ -20,13 +20,8 @@ export class UserController {
     }
 
     res.cookie("tokenCookie", token, {maxAge: 1000*60*60, httpOnly: true, signed:true})
-    
-    res.setHeader('Content-Type','application/json');
-    return res.status(201).json({
-        message: 'Sesión iniciada.',
-        user: (
-          req.user
-        )});
-  }
 
+    res.setHeader('Content-Type','application/json');
+    return res.status(201).json(req.user)
+  }
 }
