@@ -9,7 +9,4 @@ router.post("/register", passportCall("register"), UserController.registerUser);
 
 router.post("/login", passportCall("login"), UserController.loginUser);
 
-router.get('/test', passportCall('jwt'), accessControl(["PREMIUM"]), (req,res) => {
-    res.setHeader('Content-Type','application/json');
-    return res.status(200).json({ok: 'ok'});
-})
+router.get('/current', passportCall('jwt'), UserController.getInfoUserForCurrent)

@@ -24,4 +24,9 @@ export class UserController {
     res.setHeader('Content-Type','application/json');
     return res.status(201).json(req.user)
   }
+
+  static async getInfoUserForCurrent(req,res){
+    res.setHeader('Content-Type','application/json');
+    return res.status(201).json(req.user)
+  }
 }

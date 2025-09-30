@@ -3,7 +3,7 @@ export class UserDAO {
     {
       email: "agustin@gmail.com",
       password: "$2b$10$F5NVYyFocv7dJKGEsTTHzuTbJ9HJQbfBInhRi6dMfIuXnm9RGblLm",
-      role: "premium",
+      role: "artist",
       name: "Agustin",
       commission: 1,
       totalIncome: 1500,
@@ -43,6 +43,7 @@ export class UserDAO {
     try {
       const { email } = dataUser;
       const user = await this.getUserByEmail(email);
+      console.log(user)
       if (!user) {
         return { error: "Credenciales invalidas" };
       }

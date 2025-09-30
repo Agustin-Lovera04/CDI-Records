@@ -24,7 +24,10 @@ class UserService {
     if (user?.error) {
       return user;
     }
-
+console.log(dataUser, user.password)
+    if (!dataUser.password || !user.password) {
+      return { error: "Credenciales inválidas" };
+    }
     const passwordIsValid = validPassword(dataUser.password, user.password);
     if (!passwordIsValid) {
       return { error: "Credenciales invalidas" };

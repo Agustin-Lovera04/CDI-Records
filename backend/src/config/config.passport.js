@@ -91,7 +91,8 @@ export const initPassport = () => {
             return done(null, false, { message: user.error });
           }
 
-          delete user.password;
+          const safeUser = { ...user };
+          delete safeUser.password;
 
           return done(null, user);
         } catch (error) {

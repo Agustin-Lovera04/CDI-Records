@@ -45,7 +45,7 @@ const Login = () => {
             navigate('/home')
 
         } catch (error) {
-            setError(error.message)
+            setError("Error interno - Contacte a un administrador: admin@cdirecords.com")
         }
     } 
     
