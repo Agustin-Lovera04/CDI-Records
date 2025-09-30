@@ -1,12 +1,14 @@
 export class UserDAO {
   users = [
     {
-      email: "agustin@gmail.com",
+      id: "agustin@gmail.com",
+      nombre: "Agustin Lovera",
       password: "$2b$10$F5NVYyFocv7dJKGEsTTHzuTbJ9HJQbfBInhRi6dMfIuXnm9RGblLm",
       role: "artist",
-      name: "Agustin",
-      commission: 1,
-      totalIncome: 1500,
+      split: 1,
+      activo: 1,  // num como bool,
+      medio_pago: null,
+      managed: 1,   // ""
     },
   ];
 
@@ -16,7 +18,7 @@ export class UserDAO {
 
   async getUserByEmail(email) {
     try {
-      const user = this.users.find((u) => u.email === email);
+      const user = this.users.find((u) => u.id === email);
       return user || undefined;
     } catch (error) {
       return {

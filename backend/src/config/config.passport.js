@@ -16,16 +16,17 @@ export const initPassport = () => {
 
       async (req, username, password, done) => {
         try {
-          let { email, password, rol, name, commission, totalIncome } =
+          let { email, password, role, split, activo, medio_pago, managed } =
             req.body; //0 si es admin
 
+          nombre = email
+
           if (
-            !email ||
+            !nombre ||
             !password ||
-            !rol ||
-            !name ||
-            !commission ||
-            totalIncome
+            !role ||
+            !split ||
+            !managed
           ) {
             return done(null, false, {
               message: "Faltan campos obligatorios.",
@@ -49,12 +50,13 @@ export const initPassport = () => {
           password = hashPassword(password);
 
           const dataUser = {
-            email,
+            nombre,
             password,
-            rol,
-            name,
-            commission,
-            totalIncome,
+            role,
+            split,
+            activo,
+            medio_pago,
+            managed
           };
           const createUser = await userServiceInstance.createUser(dataUser);
 
