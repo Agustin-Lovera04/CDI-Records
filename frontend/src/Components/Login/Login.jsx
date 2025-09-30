@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from "../../Context/UserContext";
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { BASE_URL } from "../utils";
 
 const Login = () => {
     const navigate = useNavigate()

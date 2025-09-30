@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-const BASE_URL = import.meta.env.VITE_BASE_URL
+import { BASE_URL } from "../Components/utils";
 
 const entityUser = {
     id: null,
