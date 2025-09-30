@@ -43,7 +43,6 @@ export class UserDAO {
     try {
       const { email } = dataUser;
       const user = await this.getUserByEmail(email);
-      console.log(user)
       if (!user) {
         return { error: "Credenciales invalidas" };
       }

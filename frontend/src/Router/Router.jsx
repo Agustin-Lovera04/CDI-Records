@@ -4,7 +4,6 @@ import Login from "../Components/Login/Login";
 import Home from "../Components/Home/Home";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import Unauthorized from "../Components/Unauthorized/Unauthorized";
-import Test from "../Components/Test/test";
 
 const Router = () => {
   return (
@@ -20,11 +19,11 @@ const Router = () => {
             }
           />
           <Route path="/unauthorized" element={<Unauthorized/>} />
-          <Route path="/test" element={
+{/*           <Route path="/test" element={
             <ProtectedRoute allowedRoles={'PREMIUM'}>
             <Test/>
             </ProtectedRoute>
-            } />
+            } /> */}
         </Route>
 
         <Route path="/" element={<Login />} />
