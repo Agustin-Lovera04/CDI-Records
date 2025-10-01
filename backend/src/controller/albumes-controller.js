@@ -1,5 +1,4 @@
 import { albumesServiceInstance } from "../services/albumes-service.js";
-
 export class AlbumesController{
     static async getAllAlbumes(req,res){
         const albumes = await albumesServiceInstance.getAllAlbumes()
@@ -17,6 +16,6 @@ export class AlbumesController{
         }
         
         res.setHeader('Content-Type','application/json');
-        return res.status(200).json({message: 'Album creado con éxito'});
+        return res.status(200).json({message: 'Album creado con éxito', payload: createAlbum});
     }
 }

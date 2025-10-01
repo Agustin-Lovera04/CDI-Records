@@ -21,8 +21,8 @@ albumes = [
 
     async createAlbum(dataAlbum){
         try {
-            const create = this.albumes.push(dataAlbum)
-            return create
+            this.albumes.push(dataAlbum)
+            return {id_album: dataAlbum.id, artistas: dataAlbum.artistas}
         } catch (error) {
             return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}
         }

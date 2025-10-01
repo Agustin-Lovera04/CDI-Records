@@ -15,7 +15,7 @@ class AlbumesService{
         }
 
         const dataAlbum = {
-            caratula, titulo, is_compiled, artista, gen1, gen2, paso: 1, id: 2, estado: 'publicado'
+            caratula, titulo, is_compiled, artista, gen1, gen2, paso: 1, id: 2, estado: 'Pasos pendientes'
         }
 
         return await this.DAO.createAlbum(dataAlbum)

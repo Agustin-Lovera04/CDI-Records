@@ -6,6 +6,19 @@ export class CluesController{
         const clues = await cluesServiceInstance.getAllClues()
 
         res.setHeader('Content-Type','application/json');
-        return res.status(200).json({payload: clues.length});
+        return res.status(200).json({payload: clues});
+    }
+
+    static async addCluesToAlbum(req,res){
+        const {id_album, artistas} = req.params || null
+        const addCluesToAlbum = await cluesServiceInstance.addCluesToAlbum(req.body, id_album, artistas)
+
+        if(addCluesToAlbum.error){
+            res.setHeader('Content-Type','application/json');
+            return res.status(404).json({error: addCluesToAlbum.error});
+        }
+        
+        res.setHeader('Content-Type','application/json');
+        return res.status(200).json({message: 'Pistas agregadas con éxito'});
     }
 }
