@@ -12,11 +12,14 @@ class CluesService{
         if(!id_album || !artistas){
             return {error: 'Error al recuperar información de el álbum.'}
         }
+
         const {nombre_pista, version, pista, colaboradores} = data
 
         if(!pista || !nombre_pista) {
             return {error: 'Faltan campos obligatorios.'}
         }
+
+        id_album = Number(id_album)
 
         const dataClue = {
             id_album,

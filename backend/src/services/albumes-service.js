@@ -8,14 +8,14 @@ class AlbumesService{
         return await this.DAO.getAllAlbumes()
     }
 
-    async createAlbum(data){
-        const { caratula, titulo, is_compiled, artista, gen1, gen2 } = data
-        if(!caratula || !titulo || !is_compiled || !artista || !gen1 || !gen2){
+    async createAlbum(data, usuario){
+        const { caratula, titulo, is_compiled, artistas, gen1, gen2 } = data
+        if(!caratula || !titulo || !is_compiled || !artistas || !gen1 || !gen2 || !usuario){
             return {error: 'Faltan campos obligatorios'}
         }
 
         const dataAlbum = {
-            caratula, titulo, is_compiled, artista, gen1, gen2, paso: 1, id: 2, estado: 'Pasos pendientes'
+           id: 2, paso: 1,  titulo, artistas, caratula,usuario,is_compiled,  gen1, gen2,   estado: 'Pasos pendientes', manager: null    // Hardocode por falta de relaciones
         }
 
         return await this.DAO.createAlbum(dataAlbum)
