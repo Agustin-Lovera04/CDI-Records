@@ -24,6 +24,7 @@ export const passportCall = (strategy) =>
         }
 
       req.user = user;
+      console.log(req.user)
       return next();
     })(req, res, next);
   };

@@ -24,7 +24,7 @@ class UserService {
     if (user?.error) {
       return user;
     }
-console.log(dataUser, user.password)
+
     if (!dataUser.password || !user.password) {
       return { error: "Credenciales inválidas" };
     }

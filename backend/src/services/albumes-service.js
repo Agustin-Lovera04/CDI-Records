@@ -9,13 +9,13 @@ class AlbumesService{
     }
 
     async createAlbum(data, usuario){
-        const { caratula, titulo, is_compiled, artistas, gen1, gen2 } = data
+        const { caratula, titulo, is_compiled, artistas, gen1, gen2 , manager} = data
         if(!caratula || !titulo || !is_compiled || !artistas || !gen1 || !gen2 || !usuario){
             return {error: 'Faltan campos obligatorios'}
         }
 
         const dataAlbum = {
-           id: 2, paso: 1,  titulo, artistas, caratula,usuario,is_compiled,  gen1, gen2,   estado: 'Pasos pendientes', manager: null    // Hardocode por falta de relaciones
+            paso: 1,  titulo, artistas, caratula,usuario,is_compiled,  gen1, gen2, estado: 'Pasos pendientes', manager: manager || null
         }
 
         return await this.DAO.createAlbum(dataAlbum)

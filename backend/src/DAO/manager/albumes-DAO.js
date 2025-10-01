@@ -22,7 +22,7 @@ albumes = [
     async createAlbum(dataAlbum){
         try {
             this.albumes.push(dataAlbum)
-            return {id_album: dataAlbum.id, usuario: dataAlbum.usuario}
+            return {id_album: 2, usuario: dataAlbum.usuario}    // HARDOCODE ID HASTA AUTOGENERAR
         } catch (error) {
             return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}
         }
