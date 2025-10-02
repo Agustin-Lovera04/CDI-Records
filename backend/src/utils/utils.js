@@ -17,3 +17,11 @@ export function searchToken(req){
 
 export const genToken = (user) => jwt.sign({...user}, process.env.KEY_JWT, {expiresIn:"1h"})
 export const validToken =(token) => jwt.verify(token, process.env.KEY_JWT);
+
+
+export const dismantleWhiteList = (whiteList) => {
+
+    const allowedCorsOrigin = whiteList.split(',').map(url => url.trim())
+
+    return allowedCorsOrigin
+}

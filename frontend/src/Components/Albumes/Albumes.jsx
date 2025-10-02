@@ -1,47 +1,99 @@
-import React, { useState } from 'react';
+import{ useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../utils';
 
+
 const Albumes = () => {
+  const navigate = useNavigate();
+  const [validationErrorImage, setValidationErrorImage] = useState(null);
+  const [error, setError] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [fields, setFields] = useState({
     titulo: '',
-    compilado: '',
+    is_compiled: false,
     artistas: '',
     gen1: '',
     gen2: ''
   });
 
-  const handleCreateAlbum = (e) => {
+  const handleCreateAlbum = async (e) => {
     e.preventDefault();
 
-    fetch(`${BASE_URL}/albumes`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({fields, caratula: imageFile})
-    })
+    const formData = new FormData();
+    formData.append("titulo", fields.titulo);
+    formData.append("is_compiled", fields.is_compiled);
+    formData.append("artistas", fields.artistas);
+    formData.append("gen1", fields.gen1);
+    formData.append("gen2", fields.gen2);
 
+    if (imageFile) {
+      formData.append("caratula", imageFile);
+    }
 
+    try {
+      const response = await fetch(`${BASE_URL}/albumes`, {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        setError(data.error);
+        return;
+      }
+
+      navigate(`/home/albumes/paso2/${data.payload.id_album}&${data.payload.usuario}`);
+    } catch (error) {
+      setError("Error interno - Contacte a un administrador: admin@cdirecords.com");
+    }
   };
 
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
+    const image = e.target.files[0];
+    if (!image) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+
+      img.onload = () => {
+        const width = img.width;
+        const height = img.height;
+
+        if (width < 1400 || height < 1400 || width !== height) {
+          setValidationErrorImage("La imagen debe ser cuadrada y tener mínimo 1400x1400 px");
+          e.target.value = null;
+          setImageFile(null);
+          return;
+        }
+        setValidationErrorImage(null);
+        setImageFile(image);
+      };
+
+      img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(image);
   };
 
   const handleInputChange = (e) => {
-    setFields({ ...fields, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFields({ ...fields, [name]: type === "checkbox" ? checked : value });
   };
 
   return (
     <div>
-      <form onSubmit={handleCreateAlbum}>
+      {validationErrorImage && <p style={{ color: "red" }}>{validationErrorImage}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {validationErrorImage && <p> {validationErrorImage} </p> }
+      <form onSubmit={handleCreateAlbum} id=''>
         <div>
-        <label htmlFor="imageInput">Imagen del álbum:</label>
+        <label htmlFor="caratula">Imagen del álbum:</label>
         <input
           type="file"
-          id="imageInput"
+          id="caratula"
           accept="image/*"
           onChange={handleFileChange}
           />
@@ -79,8 +131,8 @@ const Albumes = () => {
         <input
           type="checkbox"
           id="compileInput"
-          name="compilado"
-          value={fields.compilado}
+          name="is_compiled"
+          value={fields.is_compiled}
           onChange={handleInputChange}
         />
 <br />

@@ -8,6 +8,7 @@ import { router as userRouter } from './src/router/user-router.js'
 import { router as cluesRouter } from './src/router/clues-router.js'
 import { router as albumesRouter } from './src/router/albumes-router.js'
 import { initPassport } from './src/config/config.passport.js'
+import { dismantleWhiteList } from './src/utils/utils.js'
 
 const app = express()
 const PORT = config.PORT
@@ -20,8 +21,10 @@ app.use(cookieParser(config.COOKIES_SECRET_KEY))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+const whiteList = dismantleWhiteList(config.ALLOWED_CORS_ORIGINS)
+
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: whiteList,
     credentials: true
 }
 
