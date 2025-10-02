@@ -8,7 +8,7 @@ export class AlbumesController{
     }
 
     static async createAlbum(req,res){
-        console.log(req.user.nombre)
+        console.log(req.body)
         const createAlbum = await albumesServiceInstance.createAlbum(req.body, req.user.nombre)
 
         if(createAlbum.error){
