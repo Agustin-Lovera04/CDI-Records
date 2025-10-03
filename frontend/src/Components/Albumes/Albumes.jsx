@@ -47,7 +47,7 @@ const Albumes = () => {
       }
 
       navigate(
-        `/home/albumes/paso2/${data.payload.id_album}&${data.payload.usuario}`
+        `/home/clues/stage2/${data.payload.id_album}&${data.payload.usuario}`
       );
     } catch (error) {
       setError(

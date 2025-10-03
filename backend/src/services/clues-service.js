@@ -25,7 +25,9 @@ class CluesService{
             id_album,
             nombre_pista,
             artistas,
-            pista
+            pista,
+            version: version || null,
+            colaboradores: colaboradores || ''
         }
         return await this.DAO.addCluesToAlbum(dataClue)
     }
