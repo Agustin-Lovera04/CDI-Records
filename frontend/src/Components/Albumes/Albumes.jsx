@@ -18,6 +18,9 @@ const Albumes = () => {
   const handleCreateAlbum = async (e) => {
     e.preventDefault();
 
+    setValidationErrorImage('')
+    setError('')
+
     const formData = new FormData();
     formData.append("titulo", fields.titulo);
     formData.append("is_compiled", fields.is_compiled);
@@ -112,7 +115,6 @@ const Albumes = () => {
         <p style={{ color: "red" }}>{validationErrorImage}</p>
       )}
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {validationErrorImage && <p> {validationErrorImage} </p>}
       <form onSubmit={handleCreateAlbum} id="">
         <div>
           <label htmlFor="caratula">Imagen del álbum:</label>
@@ -120,7 +122,7 @@ const Albumes = () => {
             type="file"
             id="caratula"
             accept="image/*"
-            onChange={handleFileChange}
+            onChange={handleFileChange} required
           />
 
           <p>Formato: PNG, GIF, BMP, TIF, JPG Y JPEG</p>
@@ -154,7 +156,7 @@ const Albumes = () => {
           id="tituloInput"
           name="titulo"
           value={fields.titulo}
-          onChange={handleInputChange}
+          onChange={handleInputChange} required
         />
         <br />
         <label htmlFor="artistasInput">Artista o Artistas:</label>
@@ -163,7 +165,7 @@ const Albumes = () => {
           id="artistasInput"
           name="artistas"
           value={fields.artistas}
-          onChange={handleInputChange}
+          onChange={handleInputChange} required
         />
         <br />
         <label htmlFor="compileInput">Compilado?:</label>
@@ -172,7 +174,7 @@ const Albumes = () => {
           id="compileInput"
           name="is_compiled"
           value={fields.is_compiled}
-          onChange={handleInputChange}
+          onChange={handleInputChange} required
         />
         <br />
         <label htmlFor="gen1Input">Género:</label>
@@ -181,7 +183,7 @@ const Albumes = () => {
           id="gen1Input"
           name="gen1"
           value={fields.gen1}
-          onChange={handleInputChange}
+          onChange={handleInputChange} required
         />
         <br />
         <label htmlFor="gen2Input">Género 2:</label>
@@ -190,7 +192,7 @@ const Albumes = () => {
           id="gen2Input"
           name="gen2"
           value={fields.gen2}
-          onChange={handleInputChange}
+          onChange={handleInputChange} required
         />
         <br />
         <button type="submit">Crear Álbum</button>

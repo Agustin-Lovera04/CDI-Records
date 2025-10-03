@@ -26,7 +26,7 @@ class AlbumesService {
       return { error: "La imagen debe ser cuadrada y de al menos 1400x1400 px" };
     }
 
-    const { titulo, is_compiled, artistas, gen1, gen2, manager } = data;
+    let { titulo, is_compiled, artistas, gen1, gen2, manager } = data;
     if (
       !caratula ||
       !titulo ||
@@ -36,6 +36,13 @@ class AlbumesService {
       !usuario
     ) {
       return { error: "Faltan campos obligatorios" };
+    }
+
+
+    if(is_compiled == "true"){
+      is_compiled = 1
+    }else{
+      is_compiled = 0
     }
 
     const dataAlbum = {
