@@ -119,7 +119,7 @@ const Albumes = () => {
           <input
             type="file"
             id="caratula"
-            /* accept="image/*" */
+            accept="image/*"
             onChange={handleFileChange}
           />
 
