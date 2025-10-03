@@ -12,7 +12,7 @@ export class AlbumesController{
 
         if(createAlbum.error){
             res.setHeader('Content-Type','application/json');
-            return res.status(404).json({error: createAlbum.error});
+            return res.status(401).json({error: createAlbum.error});
         }
         
         res.setHeader('Content-Type','application/json');

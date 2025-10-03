@@ -9,6 +9,9 @@ class AlbumesService {
   }
   
   async createAlbum(data, caratula, usuario) {
+    if(caratula === undefined){
+      return {error: 'Formato de archivo no aceptado.'}
+    }
     const { titulo, is_compiled, artistas, gen1, gen2, manager } = data;
     if (
       !caratula ||
