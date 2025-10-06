@@ -8,24 +8,24 @@ class CluesService{
         return await this.DAO.getAllClues()
     }
 
-    async addCluesToAlbum(data, id_album, artistas){
+    async addCluesToAlbum(data, id_album, artistas, clue){
         if(!id_album || !artistas){
             return {error: 'Error al recuperar información de el álbum.'}
         }
 
         const {nombre_pista, version, pista, colaboradores} = data
 
-        if(!pista || !nombre_pista) {
+        if(!clue || !nombre_pista) {
             return {error: 'Faltan campos obligatorios.'}
         }
 
         id_album = Number(id_album)
 
         const dataClue = {
-            id_album,
+            id_album: id_album,
             nombre_pista,
             artistas,
-            pista,
+            pista: `uploads/audios/${clue.filename}`,
             version: version || null,
             colaboradores: colaboradores || ''
         }
