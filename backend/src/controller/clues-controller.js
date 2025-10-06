@@ -11,7 +11,7 @@ export class CluesController{
 
     static async addCluesToAlbum(req,res){
         const {id_album, artistas} = req.params || null
-        const addCluesToAlbum = await cluesServiceInstance.addCluesToAlbum(req.body, id_album, artistas)
+        const addCluesToAlbum = await cluesServiceInstance.addCluesToAlbum(req.body, id_album, artistas, req.file)
 
         if(addCluesToAlbum.error){
             res.setHeader('Content-Type','application/json');
