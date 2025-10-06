@@ -19,6 +19,13 @@ albumes = [
         return this.albumes
     }
 
+
+    async getAlbumById(id){
+        const album = this.albumes.find(album => album.id === id)
+
+        if(!album)return {error: 'No se encontró album con el ID ingresado.'}
+        return album
+    }
     async createAlbum(dataAlbum){
         try {
             this.albumes.push(dataAlbum)

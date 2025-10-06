@@ -8,6 +8,14 @@ class AlbumesService {
   async getAllAlbumes() {
     return await this.DAO.getAllAlbumes();
   }
+
+  async getAlbumById(id){
+    if(!id)return {error: 'Debe enviar un id valido.'}
+    id = Number(id)
+    if(isNaN(id)) return {error: 'Debe enviar un id valido.'}
+
+    return await this.DAO.getAlbumById(id)
+  }
   
   async createAlbum(data, caratula, usuario) {
     if(caratula === undefined){

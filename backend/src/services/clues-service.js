@@ -1,4 +1,5 @@
 import { CluesDAO as DAO } from "../DAO/manager/clues-DAO.js"
+import { albumesServiceInstance } from "./albumes-service.js"
 class CluesService{
     constructor(DAO){
         this.DAO = new DAO()
@@ -13,7 +14,10 @@ class CluesService{
             return {error: 'Error al recuperar información de el álbum.'}
         }
 
-        const {nombre_pista, version, pista, colaboradores} = data
+        const existAlbum = await albumesServiceInstance.getAlbumById(id_album)
+        if(existAlbum.error)return {error: existAlbum.error}
+
+        const {nombre_pista, version, colaboradores} = data
 
         if(!clue || !nombre_pista) {
             return {error: 'Faltan campos obligatorios.'}
