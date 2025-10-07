@@ -8,4 +8,6 @@ router.get('/', passportCall('jwt'), accessControl(['ADMIN', 'ARTISTA', 'MANAGER
 
 router.post('/', passportCall('jwt'), upload.single('caratula'), accessControl(['ADMIN', 'ARTISTA', 'MANAGER']),AlbumesController.createAlbum)
 
-router.put('/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.updateStageTo2)
+router.put('/stage3/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.updateStageTo2)
+
+router.put('/stage4/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.sendAlbumToRevision)

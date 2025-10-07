@@ -14,7 +14,7 @@ const Stage3 = () => {
 
   const handleUpdateStage = async()=> {
     try {
-      const response =await fetch(`${BASE_URL}/albumes/${id_album}`, {
+      const response =await fetch(`${BASE_URL}/albumes/stage3/${id_album}`, {
         method: 'PUT',
         credentials: 'include',
       })

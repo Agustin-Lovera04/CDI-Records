@@ -31,4 +31,16 @@ export class AlbumesController{
         res.setHeader('Content-Type','application/json');
         return res.status(200).json({ok: 'Paso actualizado con éxito'});
     }
+
+    static async sendAlbumToRevision(req,res){
+        const sendAlbumToRevision = await albumesServiceInstance.sendAlbumToRevision(req.params)
+
+        if(sendAlbumToRevision.error){
+            res.setHeader('Content-Type','application/json');
+            return res.status(404).json({error: sendAlbumToRevision.error});
+        }
+
+        res.setHeader('Content-Type','application/json');
+        return res.status(200).json({ok: 'Album en revision'});
+    }
 }

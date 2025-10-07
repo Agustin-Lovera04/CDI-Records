@@ -54,4 +54,22 @@ albumes = [
             return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}
         }
     }
+
+    async sendAlbumToRevision(id_album){
+    try {
+        const albumIDX = this.albumes.findIndex(a => a.id === id_album);
+        if (albumIDX === -1) return { error: 'No se encontró album con el ID ingresado.' };
+
+        const nuevosAlbumes = [...this.albumes];
+
+        nuevosAlbumes[albumIDX] = { ...nuevosAlbumes[albumIDX], paso: 4 };
+
+        this.albumes = nuevosAlbumes;
+
+        return {success: true}
+
+    } catch (error) {
+            return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}
+        }
+    }
 }

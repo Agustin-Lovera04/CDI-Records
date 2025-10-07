@@ -7,6 +7,7 @@ import Unauthorized from "../Components/Unauthorized/Unauthorized";
 import Albumes from "../Components/Albumes/Albumes";
 import AddClues from "../Components/AddClues/AddClues";
 import Stage3 from "../Components/Stage3/Stage3";
+import Stage4 from "../Components/Stage4/Stage4";
 
 const Router = () => {
   return (
@@ -39,6 +40,12 @@ const Router = () => {
             <Route path="/home/albumes/stage3/:id_album/:artistas" element ={
             <ProtectedRoute allowedRoles={['ARTISTA', 'ADMIN', 'MANAGER']}>
               <Stage3/>
+            </ProtectedRoute>
+          } />
+
+            <Route path="/home/albumes/stage4/:id_album/:artistas" element ={
+            <ProtectedRoute allowedRoles={['ARTISTA', 'ADMIN', 'MANAGER']}>
+              <Stage4/>
             </ProtectedRoute>
           } />
           <Route path="/unauthorized" element={<Unauthorized/>} />
