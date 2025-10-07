@@ -26,11 +26,31 @@ albumes = [
         if(!album)return {error: 'No se encontró album con el ID ingresado.'}
         return album
     }
+
     async createAlbum(dataAlbum){
         try {
             this.albumes.push(dataAlbum)
             return {id_album: 2, usuario: dataAlbum.usuario}    // HARDOCODE ID HASTA AUTOGENERAR
         } catch (error) {
+            return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}
+        }
+    }
+
+
+    async updateStageTo2(id_album){
+        try {
+        const albumIDX = this.albumes.findIndex(a => a.id === id_album);
+        if (albumIDX === -1) return { error: 'No se encontró album con el ID ingresado.' };
+
+        const nuevosAlbumes = [...this.albumes];
+
+        nuevosAlbumes[albumIDX] = { ...nuevosAlbumes[albumIDX], paso: 2 };
+
+        this.albumes = nuevosAlbumes;
+
+        return {success: true}
+
+    } catch (error) {
             return {error: 'Error interno - Contacte a un administrador: admin@cdirecords.com'}
         }
     }

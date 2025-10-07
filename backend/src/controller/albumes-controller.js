@@ -18,4 +18,17 @@ export class AlbumesController{
         res.setHeader('Content-Type','application/json');
         return res.status(200).json({message: 'Album creado con éxito', payload: createAlbum});
     }
+
+
+    static async updateStageTo2(req,res){
+
+        const updateStageTo2 = await albumesServiceInstance .updateStageTo2(req.params)
+        if(updateStageTo2.error){
+            res.setHeader('Content-Type','application/json');
+            return res.status(404).json({error: updateStageTo2.error});
+        }
+
+        res.setHeader('Content-Type','application/json');
+        return res.status(200).json({ok: 'Paso actualizado con éxito'});
+    }
 }

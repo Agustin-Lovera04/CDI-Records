@@ -68,6 +68,20 @@ class AlbumesService {
 
     return await this.DAO.createAlbum(dataAlbum);
   }
+
+  async updateStageTo2(params){
+    let {id_album} = params
+    if(!id_album)return {error: 'Debe enviar un id valido.'}
+
+    id_album = Number(id_album)
+
+    if(isNaN(id_album))return {error: 'Debe enviar un id valido.'}
+
+    const existAlbum = await this.getAlbumById(id_album)
+    if(existAlbum.error)return {error: existAlbum.error}
+    
+    return await this.DAO.updateStageTo2(id_album)
+  }
 }
 
 export const albumesServiceInstance = new AlbumesService(DAO);
