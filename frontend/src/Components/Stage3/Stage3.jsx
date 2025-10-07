@@ -22,7 +22,7 @@ const Stage3 = () => {
       
       const data = await response.json()
       if(data.error){
-        setError(data.error)
+       return setError(data.error)
       }
 
       navigate(`/home/clues/stage2/${id_album}/${artistas}`)
@@ -32,14 +32,11 @@ const Stage3 = () => {
 
   }
 
-
-  const handleSaveAndContinue = async()=> {}
-
   return (
     <div>
       {error &&  <p>{error}</p> }
       <h2>Lista de pistas</h2>
-      <button onClick={handleUpdateStage}>Agragar mas pistas</button>
+      <button onClick={handleUpdateStage}>Agregar mas pistas</button>
       <Link to={`/home/albumes/stage4/${id_album}/${artistas}`}>Guardar y continuar</Link>
     </div>
   )
