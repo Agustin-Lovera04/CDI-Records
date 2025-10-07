@@ -49,7 +49,7 @@ const AddClues = () => {
             }
 
             navigate(
-                `/home/albumes/stage3/${id_album}/${artistas}`
+                `/home/crear-albumes/stage3/${id_album}/${artistas}`
             );
         } catch (error) {
                  setError(

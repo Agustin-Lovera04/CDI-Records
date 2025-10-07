@@ -13,7 +13,7 @@ const Stage4 = () => {
   }, [id_album]);
   const handleSendAlbumToRevision = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/albumes/stage4/${id_album}`, {
+      const response = await fetch(`${BASE_URL}/albumes/crear/stage4/${id_album}`, {
         method: "PUT",
         credentials: "include",
       });
@@ -24,11 +24,9 @@ const Stage4 = () => {
         return setError(data.error);
       }
 
-      console.log('paso')
 
       navigate("/home/albumes");
     } catch (error) {
-        console.log(error)
       setError(
         "Error interno - Contacte a un administrador: admin@cdirecords.com"
       );

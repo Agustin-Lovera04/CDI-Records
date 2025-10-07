@@ -14,7 +14,7 @@ const Stage3 = () => {
 
   const handleUpdateStage = async()=> {
     try {
-      const response =await fetch(`${BASE_URL}/albumes/stage3/${id_album}`, {
+      const response =await fetch(`${BASE_URL}/albumes/crear/stage3/${id_album}`, {
         method: 'PUT',
         credentials: 'include',
       })
@@ -37,7 +37,7 @@ const Stage3 = () => {
       {error &&  <p>{error}</p> }
       <h2>Lista de pistas</h2>
       <button onClick={handleUpdateStage}>Agregar mas pistas</button>
-      <Link to={`/home/albumes/stage4/${id_album}/${artistas}`}>Guardar y continuar</Link>
+      <Link to={`/home/crear-albumes/stage4/${id_album}/${artistas}`}>Guardar y continuar</Link>
     </div>
   )
 }

@@ -6,8 +6,8 @@ export const router=Router()
 
 router.get('/', passportCall('jwt'), accessControl(['ADMIN', 'ARTISTA', 'MANAGER']),AlbumesController.getAllAlbumes )
 
-router.post('/', passportCall('jwt'), upload.single('caratula'), accessControl(['ADMIN', 'ARTISTA', 'MANAGER']),AlbumesController.createAlbum)
+router.post('/crear/', passportCall('jwt'), upload.single('caratula'), accessControl(['ADMIN', 'ARTISTA', 'MANAGER']),AlbumesController.createAlbum)
 
-router.put('/stage3/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.updateStageTo2)
+router.put('/crear/stage3/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.updateStageTo2)
 
-router.put('/stage4/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.sendAlbumToRevision)
+router.put('/crear/stage4/:id_album', passportCall('jwt'), accessControl(["ARTISTA","ADMIN", "MANAGER"]),  AlbumesController.sendAlbumToRevision)

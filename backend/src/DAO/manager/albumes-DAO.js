@@ -62,7 +62,7 @@ albumes = [
 
         const nuevosAlbumes = [...this.albumes];
 
-        nuevosAlbumes[albumIDX] = { ...nuevosAlbumes[albumIDX], paso: 4 };
+        nuevosAlbumes[albumIDX] = { ...nuevosAlbumes[albumIDX], paso: 4, estado: 'Enviado' };
 
         this.albumes = nuevosAlbumes;
 

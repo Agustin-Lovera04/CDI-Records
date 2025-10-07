@@ -4,10 +4,11 @@ import Login from "../Components/Login/Login";
 import Home from "../Components/Home/Home";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import Unauthorized from "../Components/Unauthorized/Unauthorized";
-import Albumes from "../Components/Albumes/Albumes";
+import CrearAlbumes from "../Components/CrearAlbumes/CrearAlbumes";
 import AddClues from "../Components/AddClues/AddClues";
 import Stage3 from "../Components/Stage3/Stage3";
 import Stage4 from "../Components/Stage4/Stage4";
+import Albumes from "../Components/Albumes/Albumes";
 
 const Router = () => {
   return (
@@ -22,11 +23,20 @@ const Router = () => {
               </ProtectedRoute>
             }
           />
+          
           <Route
           path="/home/albumes"
           element={
             <ProtectedRoute allowedRoles={['ARTISTA', 'ADMIN', 'MANAGER']}>
               <Albumes/>
+            </ProtectedRoute>
+          }
+          />
+          <Route
+          path="/home/crear-albumes"
+          element={
+            <ProtectedRoute allowedRoles={['ARTISTA', 'ADMIN', 'MANAGER']}>
+              <CrearAlbumes/>
             </ProtectedRoute>
           }
           />
@@ -37,13 +47,13 @@ const Router = () => {
             </ProtectedRoute>
           } />
 
-            <Route path="/home/albumes/stage3/:id_album/:artistas" element ={
+            <Route path="/home/crear-albumes/stage3/:id_album/:artistas" element ={
             <ProtectedRoute allowedRoles={['ARTISTA', 'ADMIN', 'MANAGER']}>
               <Stage3/>
             </ProtectedRoute>
           } />
 
-            <Route path="/home/albumes/stage4/:id_album/:artistas" element ={
+            <Route path="/home/crear-albumes/stage4/:id_album/:artistas" element ={
             <ProtectedRoute allowedRoles={['ARTISTA', 'ADMIN', 'MANAGER']}>
               <Stage4/>
             </ProtectedRoute>
